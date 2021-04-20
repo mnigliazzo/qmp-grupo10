@@ -5,6 +5,8 @@ class Prenda {
 ~ String colorPrimario
 ~ String colorSecundario
 + Categoria getCategoria()
++ String getColorSecundario()
++ setColorSecundario(String)
 }
 class TipoPrenda {
 ~ Categoria categoria

@@ -2,7 +2,7 @@ package domain.prenda;
 
 import java.util.Objects;
 
-public class Prenda extends Throwable {
+public class Prenda {
     TipoPrenda tipo;
     String material; // TODO: Verificar el comportamiento que tendra el Material, esta como string ya que al no tener comportamiento por ahora no pareciera ser necesario darle comportamiento
     String colorPrimario; // TODO: Verificar el comportamiento que tendra el Color, esta como string ya que al no tener comportamiento por ahora no pareciera ser necesario darle comportamiento
