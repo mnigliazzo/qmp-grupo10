@@ -1,0 +1,18 @@
+@startuml
+class Prenda {
+~ TipoPrenda tipo
+~ String material
+~ String colorPrimario
+~ String colorSecundario
++ Categoria getCategoria()
+}
+class TipoPrenda {
+~ Categoria categoria
++ Categoria getCategoria()
+}
+Enum Categoria {
+}
+
+Prenda -> TipoPrenda
+TipoPrenda -> Categoria
+@enduml
