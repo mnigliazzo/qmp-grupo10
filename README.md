@@ -13,7 +13,7 @@ Se realizo un enum ya que según el relevamiento las categorias de las prendas s
 ### Clase `TipoPrenda`
 
 Esta clase es la encargada de representar al tipo de prenda segun la categoria, indicando por ejemplo que una remera es de la partesuperior
-El unico metodo que tiene esta clase es el engargado de devolver el atributo por el cual fue instanciada la clase
+El unico metodo que tiene esta clase es el encargado de devolver el atributo por el cual fue instanciada la clase
 
 ### Clase `Prenda`
 
@@ -22,6 +22,8 @@ Cuenta con los siguientes atributos:
 - tipo: el cual representa el tipo de prenda
 - material: representando el material del mismo, se modelo como String en el relevamiento no tiene comportamiento, ni representa una clasificacion finita
 - colorPrimario y colorSecundario: representa los colores de la prenda, se modelo de igual forma que el material, de todas formas se podria crear una clase Color que represente con el codigo RGB el color de la prenda. De todas formas de dejo como String ya que al momento del relevamiento no se indico un comportamiento para estos atributos.
+
+Nota: no se agrego categoria ya que el relevamiento solo indica que se quiere conocer la categoria de la prenda
 
 Como metodo:
  - Setter y Getter de colorSecundario. Ya que al ser opcional en el constructor no se coloca. Como desventaja queda alterable el color en cualquier momento.
