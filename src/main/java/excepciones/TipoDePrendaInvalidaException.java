@@ -1,4 +1,4 @@
-package Excepciones;
+package excepciones;
 
 public class TipoDePrendaInvalidaException extends RuntimeException {
   public TipoDePrendaInvalidaException(String s) {

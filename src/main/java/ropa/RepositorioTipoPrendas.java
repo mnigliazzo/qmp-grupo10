@@ -1,6 +1,6 @@
-package Ropa;
+package ropa;
 
-import Excepciones.TipoDePrendaInvalidaException;
+import excepciones.TipoDePrendaInvalidaException;
 
 import java.util.List;
 
@@ -11,9 +11,9 @@ public class RepositorioTipoPrendas {
   //CONSTRUCTOR
   private RepositorioTipoPrendas(){}
 
-  public static RepositorioTipoPrendas instance(){
+  public static RepositorioTipoPrendas instance() {
 
-    if(INSTANCE == null){
+    if (INSTANCE == null) {
       INSTANCE = new RepositorioTipoPrendas();
     }
 
@@ -27,15 +27,22 @@ public class RepositorioTipoPrendas {
   private List<String> calzados;
   private List<String> accesorios;
 
-  public CategoriaPrenda buscarCategoria(String tipoPrenda){
+  public CategoriaPrenda buscarCategoria(String tipoPrenda) {
 
-    if(partesSuperiores.contains(tipoPrenda)) return CategoriaPrenda.PARTE_SUPERIOR;
-    if(partesInferiores.contains(tipoPrenda)) return CategoriaPrenda.PARTE_INFERIOR;
-    if(calzados.contains(tipoPrenda)) return CategoriaPrenda.CALZADO;
-    if(accesorios.contains(tipoPrenda)) return CategoriaPrenda.ACCESORIO;
-    else{
-      throw new TipoDePrendaInvalidaException("El TIPO de prenda ingresado no es valido");
+    if (partesSuperiores.contains(tipoPrenda)) {
+      return CategoriaPrenda.PARTE_SUPERIOR;
     }
+    if (partesInferiores.contains(tipoPrenda)) {
+      return CategoriaPrenda.PARTE_INFERIOR;
+    }
+    if (calzados.contains(tipoPrenda)) {
+      return CategoriaPrenda.CALZADO;
+    }
+    if (accesorios.contains(tipoPrenda)) {
+      return CategoriaPrenda.ACCESORIO;
+    }
+
+    throw new TipoDePrendaInvalidaException("El TIPO de prenda ingresado no es valido");
   }
 
 

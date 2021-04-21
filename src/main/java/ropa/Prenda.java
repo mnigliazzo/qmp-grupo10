@@ -1,4 +1,4 @@
-package Ropa;
+package ropa;
 
 public class Prenda {
 
@@ -11,26 +11,26 @@ public class Prenda {
   public Prenda(){}
 
   //SETTERS
-  public void setTipo(String tipo){
+  public void setTipo(String tipo) {
     this.tipo = tipo;
   }
 
-  public void setCategoria(CategoriaPrenda categoria){
+  public void setCategoria(CategoriaPrenda categoria) {
     this.categoria = categoria;
   }
 
-  public void setMaterialConstruccion(String materialConstruccion){
+  public void setMaterialConstruccion(String materialConstruccion) {
     this.materialConstruccion = materialConstruccion;
   }
 
-  public void setColorPrincipal(int color1, int color2, int color3){
+  public void setColorPrincipal(int color1, int color2, int color3) {
     this.colorPrincipal = new int[3];
     this.colorPrincipal[0] = color1;
     this.colorPrincipal[1] = color2;
     this.colorPrincipal[2] = color3;
   }
 
-  public void setColorSecundario(int color1, int color2, int color3){
+  public void setColorSecundario(int color1, int color2, int color3) {
     this.colorSecundario = new int[3];
     this.colorSecundario[0] = color1;
     this.colorSecundario[1] = color2;
