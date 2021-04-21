@@ -1,3 +1,6 @@
+## Diagrama
+![Diagrama](img/Diagrama QMP.png)
+
 # java-base-project
 
 # Ejecutar tests
