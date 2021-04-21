@@ -1,5 +1,7 @@
 package domain;
 
+import java.util.Objects;
+
 public class Prenda {
 
   private String material;
@@ -8,16 +10,15 @@ public class Prenda {
   private Tipo tipo;
 
   public Prenda(String material, String colorPrimario, Tipo tipo) {
-    this.material = material;
-    this.colorPrimario = colorPrimario;
-    this.tipo = tipo;
+    this.material = Objects.requireNonNull(material, "Material no puede ser nulo");
+    this.colorPrimario = Objects.requireNonNull(colorPrimario, "Color primario no puede ser nulo");
+    this.tipo = Objects.requireNonNull(tipo, "Tipo no puede ser nulo");
   }
 
   public Prenda(String material, String colorPrimario, String colorSecundario, Tipo tipo) {
-    this.material = material;
-    this.colorPrimario = colorPrimario;
-    this.tipo = tipo;
-    this.colorSecundario = colorSecundario;
+    this(material, colorPrimario, tipo);
+    this.colorSecundario =
+        Objects.requireNonNull(colorSecundario, "Color secundario no puede ser nulo");
   }
 
   public String getMaterial() {
@@ -35,7 +36,7 @@ public class Prenda {
   public Tipo getTipo() {
     return tipo;
   }
-  
+
   public Categoria getCategoria() {
     return this.tipo.getCategoria();
   }
