@@ -1,5 +1,5 @@
 ## Diagrama
-![Diagrama](img/Diagrama QMP.png)
+![Diagrama](img/diagrama.png)
 
 # java-base-project
 
