@@ -46,13 +46,16 @@ public class GeneradorDePrendas {
 
   public Prenda getPrendaValida() {
 
-    if (this.prenda.getTipo() == null
-        || this.prenda.getMaterialConstruccion() == null
-        || this.prenda.getColorPrincipal() == null) {
-
+    if (esPrendaInvalida()) {
       throw new PrendaInvalidaException("La prenda generada no es valida. Debe tener tipo de prenda, material de construccion y color primario");
+    } else {
+      return prenda;
     }
+  }
 
-    return prenda;
+  private Boolean esPrendaInvalida(){
+    return this.prenda.getTipo() == null
+        || this.prenda.getMaterialConstruccion() == null
+        || this.prenda.getColorPrincipal() == null;
   }
 }
