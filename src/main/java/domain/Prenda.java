@@ -1,44 +1,41 @@
 package domain;
 
-import java.util.Objects;
-
 public class Prenda {
 
-  private String material;
-  private String colorPrimario;
+  private TipoPrenda tipo;
+  private Material material;
+  private String colorPrincipal;
   private String colorSecundario;
-  private Tipo tipo;
+  // Convención: color principal y secundario de la forma: "#xxxxxx", siendo x un dígito
+  // hexadecimal.
 
-  public Prenda(String material, String colorPrimario, Tipo tipo) {
-    this.material = Objects.requireNonNull(material, "Material no puede ser nulo");
-    this.colorPrimario = Objects.requireNonNull(colorPrimario, "Color primario no puede ser nulo");
-    this.tipo = Objects.requireNonNull(tipo, "Tipo no puede ser nulo");
+  public Prenda(TipoPrenda tipo, Material material, String colorPrincipal, String colorSecundario) {
+    if (tipo == null || material == null || colorPrincipal == null) {
+      throw new PrendaPoseeArgumentoInvalidoException("La prenda posee argumentos invalidos");
+    }
+    this.tipo = tipo;
+    this.material = material;
+    this.colorPrincipal = colorPrincipal;
+    this.colorSecundario = colorSecundario;
   }
 
-  public Prenda(String material, String colorPrimario, String colorSecundario, Tipo tipo) {
-    this(material, colorPrimario, tipo);
-    this.colorSecundario =
-        Objects.requireNonNull(colorSecundario, "Color secundario no puede ser nulo");
-  }
-
-  public String getMaterial() {
-    return material;
-  }
-
-  public String getColorPrimario() {
-    return colorPrimario;
-  }
-
-  public String getColorSecundario() {
-    return colorSecundario;
-  }
-
-  public Tipo getTipo() {
-    return tipo;
+  public TipoPrenda getTipoPrenda() {
+    return this.tipo;
   }
 
   public Categoria getCategoria() {
     return this.tipo.getCategoria();
   }
 
+  public Material getMaterial() {
+    return this.material;
+  }
+
+  public String getColorPrincipal() {
+    return this.colorPrincipal;
+  }
+
+  public String getColorSecundario() {
+    return this.colorSecundario;
+  }
 }

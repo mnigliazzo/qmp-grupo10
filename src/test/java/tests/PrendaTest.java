@@ -2,77 +2,84 @@ package tests;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import domain.Categoria;
+import domain.Material;
 import domain.Prenda;
-import domain.Tipo;
+import domain.PrendaPoseeArgumentoInvalidoException;
+import domain.TipoPrenda;
 
 public class PrendaTest {
 
   @Test
-  public void unaPrendaNoPuedeTenerVacioElMaterial() {
-    Assertions.assertThrows(NullPointerException.class,
-        () -> new Prenda(null, "unColorPrimario", new Tipo(Categoria.PARTEINFERIOR)));
+  public void unaPrendaPoseeUnTipo() {
+    Prenda prenda = new Prenda(TipoPrenda.ZAPATO, Material.CUERO, "#804000", null);
+    Assertions.assertNotNull(prenda.getTipoPrenda());
   }
 
   @Test
-  public void unaPrendaNoPuedeTenerVacioElColorPrimario() {
-    Assertions.assertThrows(NullPointerException.class,
-        () -> new Prenda("unMaterial", null, new Tipo(Categoria.PARTEINFERIOR)));
+  public void unaPrendaPoseeUnaCategoria() {
+    Prenda prenda = new Prenda(TipoPrenda.ZAPATO, Material.CUERO, "#804000", null);
+    Assertions.assertNotNull(prenda.getTipoPrenda().getCategoria());
   }
 
   @Test
-  public void unaPrendaPoseeColorSecundarioPorLoQueNoPuedeSerVacio() {
-    Assertions.assertThrows(NullPointerException.class,
-        () -> new Prenda("unMaterial", "unColorPrimario", null, new Tipo(Categoria.PARTEINFERIOR)));
+  public void unaPrendaPoseeUnMaterial() {
+    Prenda prenda = new Prenda(TipoPrenda.ZAPATO, Material.CUERO, "#804000", null);
+    Assertions.assertNotNull(prenda.getMaterial());
   }
 
   @Test
-  public void unaPrendaNoPoseeColorSecundarioPorLoQueEsVacio() {
-    Prenda p1 = new Prenda("unMaterial", "unColorPrimario", new Tipo(Categoria.PARTEINFERIOR));
-    Assertions.assertNull(p1.getColorSecundario());
+  public void unaPrendaPoseeUnColorPrincipal() {
+    Prenda prenda = new Prenda(TipoPrenda.ZAPATO, Material.CUERO, "#804000", null);
+    Assertions.assertNotNull(prenda.getColorPrincipal());
   }
 
   @Test
-  public void prendaPoseeUnMaterial() {
-    Prenda p1 = new Prenda("unMaterial", "unColorPrimario", new Tipo(Categoria.PARTEINFERIOR));
-    Assertions.assertNotNull(p1.getMaterial());
+  public void unaPrendaPoseeUnColorSecundario() {
+    Prenda prenda = new Prenda(TipoPrenda.ZAPATO, Material.CUERO, "#804000", "#000000");
+    Assertions.assertNotNull(prenda.getColorSecundario());
   }
 
   @Test
-  public void prendaPoseeColorPrimario() {
-    Prenda p1 = new Prenda("unMaterial", "unColorPrimario", new Tipo(Categoria.PARTEINFERIOR));
-    Assertions.assertNotNull(p1.getColorPrimario());
+  public void unaPrendaNoPuedeEstarSinUnTipo() {
+    Assertions.assertThrows(PrendaPoseeArgumentoInvalidoException.class,
+        () -> new Prenda(null, Material.CUERO, "#804000", "#000000"));
   }
 
   @Test
-  public void unaPrendaPoseeColorSecundario() {
-    Prenda p1 = new Prenda("unMaterial", "unColorPrimario", "unColorSecundario",
-        new Tipo(Categoria.PARTEINFERIOR));
-    Assertions.assertNotNull(p1.getColorSecundario());
+  public void unaPrendaNoPuedeEstarSinUnMaterial() {
+    Assertions.assertThrows(PrendaPoseeArgumentoInvalidoException.class,
+        () -> new Prenda(TipoPrenda.ZAPATO, null, "#804000", "#000000"));
   }
 
   @Test
-  public void unAnteojoDeSolEsDeCategoriaACCESORIO() {
-    Prenda anteojosDeSol = new Prenda("Plastico", "Negro", new Tipo(Categoria.ACCESORIO));
-    Assertions.assertEquals(anteojosDeSol.getCategoria(), Categoria.ACCESORIO);
+  public void unaPrendaNoPuedeEstarSinUnColorPrimario() {
+    Assertions.assertThrows(PrendaPoseeArgumentoInvalidoException.class,
+        () -> new Prenda(TipoPrenda.ZAPATO, Material.CUERO, null, "#000000"));
   }
 
   @Test
-  public void unPantalonEsDeCategoriaPARTEINFERIOR() {
-    Prenda pantalon = new Prenda("Gabardina", "Marron", new Tipo(Categoria.PARTEINFERIOR));
-    Assertions.assertEquals(pantalon.getCategoria(), Categoria.PARTEINFERIOR);
+  public void unaPrendaPuedeEstarSinUnColorSecundario() {
+    Prenda prenda = new Prenda(TipoPrenda.ZAPATO, Material.CUERO, "#804000", null);
+    Assertions.assertNull(prenda.getColorSecundario());
   }
+
+  /*
+   * No se prueba: confiamos en lo de adentro. Sabemos que un enumerado de TipoPrenda, su tipo nunca
+   * se condecirá con una categoría.
+   * 
+   * @Test public void unaPrendaNoSeCondicenConSuCategoria() {}
+   */
+
+  /*
+   * No se prueba: confiamos en lo de adentro. Sabemos que siempre que se inicialice un tipo,
+   * siempre se sabrá su categoría asociada.
+   * 
+   * @Test public void unaPrendaPoseeUnaCategoria() {}
+   */
 
   @Test
-  public void unaRemeraEsDeCategoriaPARTESUPERIOR() {
-    Prenda remeraDeLosRedondos = new Prenda("Algodon", "Negro", new Tipo(Categoria.PARTESUPERIOR));
-    Assertions.assertEquals(remeraDeLosRedondos.getCategoria(), Categoria.PARTESUPERIOR);
+  public void unaTipoDePrendaPoseeUnNombre() {
+    Prenda prenda = new Prenda(TipoPrenda.ZAPATO, Material.CUERO, "#804000", null);
+    Assertions.assertNull(prenda.getTipoPrenda().getNombre());
   }
-
-  @Test
-  public void unasAirJordansSonDeCategoriaCALZADO() {
-    Prenda airJordans = new Prenda("Nylon", "Blanco", new Tipo(Categoria.CALZADO));
-    Assertions.assertEquals(airJordans.getCategoria(), Categoria.CALZADO);
-  }
-
 }

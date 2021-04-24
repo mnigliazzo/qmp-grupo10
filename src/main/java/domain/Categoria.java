@@ -1,8 +1,5 @@
 package domain;
 
 public enum Categoria {
-  PARTESUPERIOR,
-  PARTEINFERIOR,
-  CALZADO,
-  ACCESORIO,
+  PARTESUPERIOR, PARTEINFERIOR, CALZADO, ACCESORIO,
 }
