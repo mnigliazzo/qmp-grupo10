@@ -1,3 +1,6 @@
+##Diagrama
+![Diagrama](diagrama.png)
+
 # java-base-project
 
 Esta es una plantilla de proyecto diseñada para: 
