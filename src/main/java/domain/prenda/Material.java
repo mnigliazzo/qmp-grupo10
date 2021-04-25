@@ -1,5 +1,5 @@
 package domain.prenda;
 
 public enum Material {
-	ALGODON
+	ALGODON // TODO: Falta agregar mas materiales
 }
