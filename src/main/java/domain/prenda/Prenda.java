@@ -7,11 +7,14 @@ public class Prenda {
 	Material material;
 	Color colorPrimario;
 	Color colorSecundario;
-	public Prenda(TipoPrenda tipo, Material material, Color colorPrimario,Color colorSecundario) {
-		this.tipo = Objects.requireNonNull(tipo, "Tipo no puede ser Null");
-		this.material = Objects.requireNonNull(material, "Material no puede ser Null");
-		this.colorPrimario = Objects.requireNonNull(colorPrimario, "colorPrimario no puede ser Null");
-		this.colorSecundario=colorSecundario;
+	Trama trama;
+
+	public Prenda(TipoPrenda tipo, Material material, Color colorPrimario, Color colorSecundario, Trama trama) {
+		this.tipo = tipo;
+		this.material = material;
+		this.colorPrimario = colorPrimario;
+		this.colorSecundario = colorSecundario;
+		this.trama=trama;
 	}
 
 	public Categoria getCategoria() {
