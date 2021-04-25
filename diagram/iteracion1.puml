@@ -1,20 +1,30 @@
 @startuml
 class Prenda {
 ~ TipoPrenda tipo
-~ String material
-~ String colorPrimario
-~ String colorSecundario
+~ Material material
+~ Color colorPrimario
+~ Color colorSecundario
 + Categoria getCategoria()
 + String getColorSecundario()
 + setColorSecundario(String)
 }
-class TipoPrenda {
+class Color{
+~ Integer red
+~ Integer green
+~ Integer blue
+}
+Enum TipoPrenda {
 ~ Categoria categoria
 + Categoria getCategoria()
 }
 Enum Categoria {
 }
 
+Enum Material{
+}
+
+Prenda -> Material
 Prenda -> TipoPrenda
 TipoPrenda -> Categoria
+Prenda -> Color
 @enduml
