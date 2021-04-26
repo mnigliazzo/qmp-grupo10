@@ -1,0 +1,74 @@
+@startuml
+class PrendaBorrador {
+~ TipoPrenda tipo
+~ Material material
+~ Color colorPrimario
+~ Color colorSecundario
+~ Trama trama
++ void setTrama(Trama)
++ void setMaterial(Material)
+- void validarMaterialTipoPrenda(Material)
++ void setColorPrimario(Color)
++ void setColorSecundario(Color)
++ Prenda crearPrenda()
+}
+class Prenda {
+~ TipoPrenda tipo
+~ Material material
+~ Color colorPrimario
+~ Color colorSecundario
+~ Trama trama
++ Categoria getCategoria()
+}
+Enum TipoPrenda {
+~ Categoria categoria
++ Categoria getCategoria()
+}
+Enum Categoria {
+}
+
+Enum Material{
+}
+class Color {
+~ Integer red
+~ Integer green
+~ Integer blue
+}
+PrendaBorrador ->TipoPrenda
+PrendaBorrador -> Color
+PrendaBorrador->Material
+PrendaBorrador..>Prenda
+
+Prenda->TipoPrenda
+Prenda -> Color
+Prenda->Material
+TipoPrenda->Categoria
+Uniforme ->Prenda
+class Uniforme {
+~ Prenda calzado
+~ Prenda parteInferior
+~ Prenda parteSuperior
++ {static} Uniforme crearUniforme(UniformeInstituciones)
+}
+
+interface UniformeInstituciones {
++ Prenda generarCalzado()
++ Prenda generarParteInferior()
++ Prenda generarParteSuperior()
+}
+class InstitucionJohnson implements UniformeInstituciones{
++ Prenda generarParteSuperior()
++ Prenda generarParteInferior()
++ Prenda generarCalzado()
+}
+
+class InstitucionSanJuan implements UniformeInstituciones{
++ Prenda generarParteSuperior()
++ Prenda generarParteInferior()
++ Prenda generarCalzado()
+}
+
+Uniforme ..> UniformeInstituciones
+UniformeInstituciones ..> Prenda
+
+@enduml
