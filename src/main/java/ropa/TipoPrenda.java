@@ -1,0 +1,5 @@
+package ropa;
+
+public enum TipoPrenda {
+    PANTALON, REMERA, CAMISA, BERMUDA, SUETER, CALZONCILLO, ZAPATILLA, ZAPATOS
+}

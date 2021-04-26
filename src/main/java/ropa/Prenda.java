@@ -2,66 +2,49 @@ package ropa;
 
 public class Prenda {
 
-  private String tipo;
-  private CategoriaPrenda categoria;
-  private String materialConstruccion;
-  private int[] colorPrincipal;
-  private int[] colorSecundario;
+  private TipoPrenda tipoPrenda;
+  private Categoria categoria;
+  private Material material;
+  private Color colorPrincipal;
+  private Color colorSecundario;
 
-  //SETTERS
-  public void setTipo(String tipo) {
-    this.tipo = tipo;
+  public TipoPrenda getTipoPrenda() {
+    return tipoPrenda;
   }
 
-  public void setCategoria(CategoriaPrenda categoria) {
+  public void setCategoria(Categoria categoria) {
     this.categoria = categoria;
   }
 
-  public void setMaterialConstruccion(String materialConstruccion) {
-    this.materialConstruccion = materialConstruccion;
-  }
-
-  public void setColorPrincipal(int color1, int color2, int color3) {
-    this.colorPrincipal = new int[3];
-    this.colorPrincipal[0] = color1;
-    this.colorPrincipal[1] = color2;
-    this.colorPrincipal[2] = color3;
-  }
-
-  public void setColorSecundario(int color1, int color2, int color3) {
-    this.colorSecundario = new int[3];
-    this.colorSecundario[0] = color1;
-    this.colorSecundario[1] = color2;
-    this.colorSecundario[2] = color3;
-  }
-
-
-  //GETTERS
-  public String getTipo() {
-    return tipo;
-  }
-
-  public CategoriaPrenda getCategoria() {
+  public Categoria getCategoria() {
     return categoria;
   }
 
-  public String getMaterialConstruccion() {
-    return materialConstruccion;
+  public void setTipoPrenda(TipoPrenda tipoPrenda) {
+    this.tipoPrenda = tipoPrenda;
   }
 
-  public int[] getColorPrincipal() {
-    int[] clonColorPrincipal = new int[3];
-    clonColorPrincipal[0] = this.colorPrincipal[0];
-    clonColorPrincipal[1] = this.colorPrincipal[1];
-    clonColorPrincipal[2] = this.colorPrincipal[2];
-    return clonColorPrincipal;
+  public Material getMaterial() {
+    return material;
   }
 
-  public int[] getColorSecundario() {
-    int[] clonColorSecundario = new int[3];
-    clonColorSecundario[0] = this.colorSecundario[0];
-    clonColorSecundario[1] = this.colorSecundario[1];
-    clonColorSecundario[2] = this.colorSecundario[2];
-    return clonColorSecundario;
+  public void setMaterial(Material material) {
+    this.material = material;
+  }
+
+  public Color getColorPrincipal() {
+    return colorPrincipal;
+  }
+
+  public Color getColorSecundario() {
+    return colorSecundario;
+  }
+
+  public void setColorPrincipal(Color colorPrincipal) {
+    this.colorPrincipal = colorPrincipal;
+  }
+
+  public void setColorSecundario(Color colorSecundario) {
+    this.colorSecundario = colorSecundario;
   }
 }
