@@ -38,6 +38,10 @@ public class Material {
     return this.tramaMaterial;
   }
 
+  public TipoMaterial getTipoMaterial() {
+    return tipoMaterial;
+  }
+
   public void setTramaMaterial(TramaMaterial tramaMaterial) {
     this.tramaMaterial = tramaMaterial;
   }

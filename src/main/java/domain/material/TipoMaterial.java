@@ -16,9 +16,14 @@ public enum TipoMaterial {
   // También: ZAPATO("Zapato", Categoria.CALZADO, TipoMaterial.CUERO), ZAPATO("Zapato",
   // Categoria.CALZADO, TipoMaterial.GOMA), ZAPATO("Zapato", Categoria.CALZADO,
   // TipoMaterial.ALGODON), entre otras combinaciones.
-  CUERO(setCategoriasValidas(Categoria.CALZADO)), PLASTICO(
-      setCategoriasValidas(Categoria.CALZADO, Categoria.ACCESORIO)), GABARDINA(
-          setCategoriasValidas(Categoria.PARTEINFERIOR));
+  CUERO(setCategoriasValidas(Categoria.CALZADO)),
+  PLASTICO(setCategoriasValidas(Categoria.CALZADO, Categoria.ACCESORIO)),
+  GABARDINA(setCategoriasValidas(Categoria.PARTEINFERIOR)),
+  PIQUE(setCategoriasValidas(Categoria.PARTESUPERIOR)),
+  ACETATO(setCategoriasValidas(Categoria.PARTEINFERIOR)),
+  CAUCHO(setCategoriasValidas(Categoria.CALZADO)),
+  NYLON(setCategoriasValidas(Categoria.PARTESUPERIOR)),
+  ALGODON(setCategoriasValidas(Categoria.PARTEINFERIOR));
 
   private HashSet<Categoria> categoriasValidas = new HashSet<>();
 

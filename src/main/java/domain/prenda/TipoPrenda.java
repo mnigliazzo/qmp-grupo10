@@ -6,8 +6,13 @@ public enum TipoPrenda {
   // En caso de haber separado TipoPrenda y Categoria, dentro de Prenda, se hubiese superpuesto 2
   // veces la Categoria y hubiese resultado en repetición de valores computables.
   // El dominio permite dar una mayor cohesión, pues el sistema no requiere de cambios constantes.
-  ZAPATO("Zapato", Categoria.CALZADO), CAMISAMANGACORTA("Camisa de manga corta",
-      Categoria.PARTESUPERIOR), PANTALON("Pantalon", Categoria.PARTEINFERIOR);
+  ZAPATO("Zapato", Categoria.CALZADO),
+  CAMISAMANGACORTA("Camisa de manga corta", Categoria.PARTESUPERIOR),
+  PANTALON("Pantalon", Categoria.PARTEINFERIOR),
+  CHOMBA("Chomba", Categoria.PARTESUPERIOR),
+  ZAPATILLA("Zapatilla", Categoria.CALZADO),
+  CAMISA("Camisa", Categoria.PARTESUPERIOR),
+  PANTALONDEVESTIR("Pantalon de vestir", Categoria.PARTEINFERIOR);
 
   private String nombre;
   private Categoria categoria;
