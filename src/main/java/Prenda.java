@@ -5,21 +5,24 @@ public class Prenda {
     private Material material;
     private Color colorPrimario;
     private Color colorSecundario;
+    private Trama trama = Trama.LISA;
 
 
 
-    public Prenda(TipoPrenda tipo, Material material, Color colorPrimario, Color colorSecundario) {
+    public Prenda(TipoPrenda tipo, Material material, Color colorPrimario, Color colorSecundario, Trama trama) {
 
-        validarPrenda(tipo, material, colorPrimario);
+        validarPrendaCompleta(tipo, material, colorPrimario);
 
         this.tipo = tipo;
         this.material = material;
         this.colorPrimario = colorPrimario;
         this.colorSecundario = colorSecundario;
+        this.trama = trama;
+
     }
 
 
-    private void validarPrenda(TipoPrenda tipo, Material material, Color colorPrimario){
+    private void validarPrendaCompleta(TipoPrenda tipo, Material material, Color colorPrimario){
         if(tipo == null){
             throw new PrendaInvalidaException("Tipo de PRENDA inexistente");
         }
@@ -30,6 +33,12 @@ public class Prenda {
             throw new PrendaInvalidaException("Tipo de COLOR PRIMARIO inexistente");
         }
 
+    }
+
+    private void validarTipoPrendaConMaterial(TipoPrenda tipo, Material material ) {
+        if (false) { //TODO: validarMaterial()
+            throw new PrendaInvalidaException("Tipo de PRENDA inconsistente con MATERIAL");
+        }
     }
 
     public Categoria getCategoria(){
