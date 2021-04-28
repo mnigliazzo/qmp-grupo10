@@ -13,4 +13,5 @@ public enum TipoPrenda {
     public Categoria getCategoria() {
         return categoria;
     }
+
 }
