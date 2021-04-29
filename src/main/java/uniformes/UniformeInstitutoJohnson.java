@@ -9,12 +9,22 @@ public class UniformeInstitutoJohnson implements UniformeFactory {
 
     @Override
     public Uniforme crearUniforme() {
-        Prenda camisa = new Prenda.PrendaBuilderEmi(TipoPrenda.CAMISA, Material.ALGODON,new Color(255,255,255))
+
+        Prenda camisa = new Prenda.PrendaBuilder(TipoPrenda.CAMISA)
+                .material(Material.ALGODON)
+                .colorPrimario(new Color(255,255,255))
                 .build();
-        Prenda zapato = new Prenda.PrendaBuilderEmi(TipoPrenda.ZAPATOS,Material.CUERO,new Color(0,0,0))
+
+        Prenda zapatos = new Prenda.PrendaBuilder(TipoPrenda.ZAPATOS)
+                .material(Material.CUERO)
+                .colorPrimario(new Color(0,0, 0))
                 .build();
-        Prenda pantalon = new Prenda.PrendaBuilderEmi(TipoPrenda.PANTALON_DE_VESTIR,Material.GABARDINA,new Color(0,0,0))
+
+        Prenda pantalon = new Prenda.PrendaBuilder(TipoPrenda.PANTALON_DE_VESTIR)
+                .material(Material.GABARDINA)
+                .colorPrimario(new Color(0,0,0))
                 .build();
-        return new Uniforme(zapato,camisa,pantalon);
+
+        return new Uniforme(zapatos,camisa,pantalon);
     }
 }

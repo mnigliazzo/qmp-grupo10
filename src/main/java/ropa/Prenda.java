@@ -9,7 +9,7 @@ public class Prenda {
     private Color colorSecundario;
     private Trama trama = Trama.LISA;
 
-    private Prenda(PrendaBuilderEmi builder) {
+    private Prenda(PrendaBuilder builder) {
         this.tipoPrenda =  builder.tipoPrenda;
         this.categoria = builder.categoria;
         this.material = builder.material;
@@ -42,7 +42,31 @@ public class Prenda {
         return trama;
     }
 
-    public static class PrendaBuilderEmi {
+    public void setTipoPrenda(TipoPrenda tipoPrenda) {
+        this.tipoPrenda = tipoPrenda;
+    }
+
+    public void setCategoria(Categoria categoria) {
+        this.categoria = categoria;
+    }
+
+    public void setMaterial(Material material) {
+        this.material = material;
+    }
+
+    public void setColorPrincipal(Color colorPrincipal) {
+        this.colorPrincipal = colorPrincipal;
+    }
+
+    public void setColorSecundario(Color colorSecundario) {
+        this.colorSecundario = colorSecundario;
+    }
+
+    public void setTrama(Trama trama) {
+        this.trama = trama;
+    }
+
+    public static class PrendaBuilder {
         private TipoPrenda tipoPrenda;
         private Categoria categoria;
         private Material material;
@@ -50,21 +74,30 @@ public class Prenda {
         private Color colorSecundario;
         private Trama trama = Trama.LISA;
 
-        public PrendaBuilderEmi(TipoPrenda tipo, Material material, Color colorPrincipal) {
+        public PrendaBuilder(TipoPrenda tipo) {
             this.tipoPrenda = tipo;
-            this.material = material;
-            this.colorPrincipal = colorPrincipal;
         }
-        public PrendaBuilderEmi colorSecundario(Color colorSecundario) {
+
+        public PrendaBuilder colorSecundario(Color colorSecundario) {
             this.colorSecundario = colorSecundario;
             return this;
         }
-        public PrendaBuilderEmi trama(Trama trama) {
+        public PrendaBuilder trama(Trama trama) {
             this.trama = trama;
             return this;
         }
-        public PrendaBuilderEmi colorPrimario(Color color) {
+        public PrendaBuilder colorPrimario(Color color) {
             this.colorPrincipal = color;
+            return this;
+        }
+
+        public PrendaBuilder categoria(Categoria categoria) {
+            this.categoria = categoria;
+            return this;
+        }
+
+        public PrendaBuilder material(Material material) {
+            this.material = material;
             return this;
         }
 
