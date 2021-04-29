@@ -1,4 +1,5 @@
 ## Diagrama
+<<<<<<< HEAD
 ![Diagrama](img/diagrama.png)
 
 # java-base-project
@@ -41,3 +42,6 @@ mvn clean verify && git tag entrega-final && git push origin HEAD --tags
     1. En **Settings/Preferences**, ir a a **Editor | Code Style**.
     2. En la lista **Line separator**, seleccionar `Unix and OS X (\n)`.
  ![Screenshot 2021-04-10 03-49-00](https://user-images.githubusercontent.com/11875266/114260872-c6490c00-99ad-11eb-838f-022acc1903f4.png)
+=======
+![Diagrama](diagrama2.png)
+>>>>>>> e1eb68550d4caa017fd4a46016fff699c8f18657
