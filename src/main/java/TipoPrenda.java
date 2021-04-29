@@ -1,7 +1,11 @@
 public enum TipoPrenda {
 
-    ZAPATO(Categoria.CALZADO),
-    CAMISA(Categoria.SUPERIOR);
+    ZAPATOS(Categoria.CALZADO),
+    CAMISA(Categoria.SUPERIOR),
+    CHOMBA(Categoria.SUPERIOR),
+    PANTALON(Categoria.INFERIOR),
+    ZAPATILLAS(Categoria.CALZADO);
+
 
 
     private Categoria categoria;

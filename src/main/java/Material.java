@@ -2,6 +2,8 @@ public enum Material {
 
     ALGODON,
     CUERO,
-    LANA
+    LANA,
+    PIQUE,
+    ACETATO
 
 }

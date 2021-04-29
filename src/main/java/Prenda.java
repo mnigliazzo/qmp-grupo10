@@ -17,7 +17,9 @@ public class Prenda {
         this.material = material;
         this.colorPrimario = colorPrimario;
         this.colorSecundario = colorSecundario;
-        this.trama = trama;
+        if (trama != null){
+            this.trama = trama;
+        }
 
     }
 
