@@ -10,7 +10,7 @@ Se agrego:
 
 ### Clase `PrendaBorrador`
 
-La cual es un builder de `Prenda` a la cual mediante el constructor solo se le indica el Tipo de Prenda, y luego mediate setter se van cargando los atributos. 
+La cual es un builder de `Prenda` , mediante el constructor solo se le indica el Tipo de Prenda, y luego mediate setter se van cargando los atributos. 
 
 En estos setter se colocaron las validaciones necesarias para que la prenda sea valida. Restaria definir como se realizará la validacion entre el tipo de prenda contra el material para indicar si es valida.
 

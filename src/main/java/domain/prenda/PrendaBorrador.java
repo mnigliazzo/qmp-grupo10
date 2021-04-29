@@ -35,13 +35,12 @@ public class PrendaBorrador {
 	}
 
 	public Prenda crearPrenda(){
-		this.validar();
+		this.validar(); //Llamo a validar ya que no se impide que se llame el metodo con los atributos en null
 		return new Prenda(this.tipo,this.material,this.colorPrimario,this.colorSecundario,this.trama);
 	}
 	private void validar(){
 		if (this.material==null) throw new PrendaException("Material no puede ser Null");
 		if (this.colorPrimario==null) throw new PrendaException("Color Primario no puede ser Null");
-		//TODO: Validar que todos los atributos no sean null
 	}
 }
 
