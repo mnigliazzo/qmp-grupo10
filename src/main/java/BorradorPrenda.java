@@ -1,4 +1,4 @@
-public class PrendaBuilder {
+public class BorradorPrenda {
 
     private TipoPrenda tipo;
     private Material material;
@@ -8,7 +8,7 @@ public class PrendaBuilder {
 
 
 
-    public PrendaBuilder(TipoPrenda tipo) {
+    public BorradorPrenda(TipoPrenda tipo) {
         this.tipo = tipo;
     }
     public void setMaterial(Material material) {
