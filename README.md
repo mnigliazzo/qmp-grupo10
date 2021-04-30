@@ -8,7 +8,8 @@
 
 ## Explicacion
 
-Se procedera a explicar citando los requerimientos del ejercicio la forma de resolucion del ejercicio.
+Se procede a explicar los requerimientos del dominio, citando la forma de resolucion del ejercicio.
+
 
 * Como usuarie de QuéMePongo, quiero especificar qué trama tiene la tela de una prenda (lisa, rayada, con lunares, a cuadros o un estampado).
 
@@ -38,7 +39,10 @@ Esto lo resolvimos haciendo a la prenda mutable. ejemplificamos con un poco de c
                 .material(Material.CUERO)
                 .colorPrimario(new Color(0,0, 0))
                 .build();
-      <b> un tiempo mas tarde</b>
+```
+      un tiempo mas tarde...
+
+```java                
       zapatos.setColorSecundario(new Color(255,255,255)); 
 ```
 
@@ -48,7 +52,7 @@ Claramente se ve lo feo de usar setters (? En mi opinion seria mejor destruir la
 Esto <a href="https://github.com/mnigliazzo/qmp-grupo10/blob/emazzaglia-qmp-2-iteracion/src/main/java/ropa/Prenda.java#L10" target="__blank" >lo resolvimos facilmente inicializando</a> la variable trama en lisa dentro de la prenda. 
 
 * Como usuarie de QuéMePongo, quiero poder guardar una prenda solamente si esta es válida.
-Nuestro builder nos ayuda en esto dado que el metodo build genera una validacion previa chequeando por ejemplo que los parametros obligatorios esten.
+Nuestro builder nos ayuda en esto dado que el método build genera una validación previa chequeando, por ejemplo, que se encuentren presente los parámetros obligatorios.
 Codigo: 
 
 ```java
