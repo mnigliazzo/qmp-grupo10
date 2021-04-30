@@ -1,184 +1,91 @@
-# QMP1-Primera-Iteracion
+# QMP Iteración 2 - Grupo 10
 
 ## Diagrama de clases
 
-<p align="center"> 
-<img src="QMP1-Primera-Iteracion.png">
+<p> 
+<img src="diagrama-qmp-2.PNG">
 </p>
-
 
 ## Explicacion
 
-* La clase "Prenda" tiene estado, pero no tiene comportamiento relevante (por el momento). No se debe poder 
-  instanciar clases de "Prenda" directamente, se deben instanciar desde el "GeneradorDePrendas"
+Se procede a explicar los requerimientos del dominio, citando la forma de resolucion del ejercicio.
 
 
-* La clase "GeneradorDePrendas" sirve para configurar las instancias de "Prenda" y dejarlas con un estado aceptable 
-  para el sistema. Además esta clase permite evitar tener un constructor de "Prenda" con demasiados atributos.
-  
+* Como usuarie de QuéMePongo, quiero especificar qué trama tiene la tela de una prenda (lisa, rayada, con lunares, a cuadros o un estampado).
 
-* La clase "RepositorioTipoVentas" es un singleton que usamos para tratar de representar lo que sería una petición a
-  una base de datos, aunque no sabemos si sería correcto. La idea es que las listas que están en esta clase se puedan 
-  persistir y actualizar para poder identificar TIPOS de prendas válidos. Que a su vez nos permite identificar a que
-  categoria pertenece una prenda.
+Este punto se resolvio agregando un <a href="https://github.com/mnigliazzo/qmp-grupo10/blob/emazzaglia-qmp-2-iteracion/src/main/java/ropa/Prenda.java#L18" target="__blank">Enumerable Trama</a> el cual contiene las distintas tramas (limitadas) que puede tener una prenda. 
 
+* Como usuarie de QuéMePongo, quiero crear una prenda especificando primero de qué tipo es.
 
-## Pseudocodigo
+En este caso nosotros creamos una clase estatica dentro de la clase Prenda (aka Nested Class) la cual utilizamos como builder de nuestra prenda. 
+Si querriamos crear una prenda primero especificando su tipo lo que hariamos seria: 
+
+```java
+       Prenda chomba = new Prenda.PrendaBuilder(TipoPrenda.CHOMBA).build(); 
+```       
+
+Lo que no gusta tanto de esta solucion es que luego para seguir cargando la prenda (por ejemplo agregarle su material) tenemos que agregarle setters a la prenda lo que la hara <b>mutable</b>. 
+
+* Como usuarie de QuéMePongo, quiero crear una prenda especificando en segundo lugar los aspectos relacionados a su material (colores, material, trama, etc) para evitar elegir materiales inconsistentes con el tipo de prenda.
+
+Para resolver este punto y relacionado al punto anterior, tuvimos que hacer a la prenda mutable (agregarle setters). Esto tampoco nos gusto mucho porque en realidad en la iteracion 1 el tipo, color principal y categoria eran el punto de partida de una prenda. Esto de tener que ir construyendo la prenda poco a poco podriamos resolverlo de 2 formas. La primera es agregar setters y hacer mutable a la prenda o la otra es ir creando una instancia nueva de la prenda y destruyendo la anterior a medida que queremos agregarle propiedades. 
+La desventaja de la primer opcion es que podriamos llegar a perder consistencia de las prendas y ademas romper reglas de negocio (puesto que la validacion de la prenda se hace en su creacion actualmente) lo que nos llevaria a tener que crear mas validaciones en cada setter de prenda para ver si estamos en un estado consistente.
+
+* Como usuarie de QuéMePongo, quiero guardar un borrador de la la última prenda que empecé a cargar para continuar después.
+Esto lo resolvimos haciendo a la prenda mutable. ejemplificamos con un poco de codigo.
+
+```java
+        Prenda zapatos = new Prenda.PrendaBuilder(TipoPrenda.ZAPATOS)
+                .material(Material.CUERO)
+                .colorPrimario(new Color(0,0, 0))
+                .build();
+```
+      un tiempo mas tarde...
+
+```java                
+      zapatos.setColorSecundario(new Color(255,255,255)); 
+```
+
+Claramente se ve lo feo de usar setters (? En mi opinion seria mejor destruir la prenda y volver a construirla con la ayuda de nuestro builder.
+
+* Como usuarie de QuéMePongo, quiero poder no indicar ninguna trama para una tela, y que por defecto ésta sea lisa.
+Esto <a href="https://github.com/mnigliazzo/qmp-grupo10/blob/emazzaglia-qmp-2-iteracion/src/main/java/ropa/Prenda.java#L10" target="__blank" >lo resolvimos facilmente inicializando</a> la variable trama en lisa dentro de la prenda. 
+
+* Como usuarie de QuéMePongo, quiero poder guardar una prenda solamente si esta es válida.
+Nuestro builder nos ayuda en esto dado que el método build genera una validación previa chequeando, por ejemplo, que se encuentren presente los parámetros obligatorios.
+Codigo: 
+
+```java
+        public Prenda build() {
+            Prenda prenda =  new Prenda(this);
+            validarPrenda(prenda);
+            return prenda;
+        }
+        public void validarPrenda(Prenda prenda) {
+            if(prenda.getTipoPrenda() == null) {
+                throw new excepciones.PrendaInvalidaException("La prenda no es valida porque no se cargo el tipo.");
+            } else if(prenda.getMaterial() == null) {
+                throw new excepciones.PrendaInvalidaException("La prenda no es valida porque no se cargo el material.");
+            } else if(prenda.getColorPrincipal() == null) {
+                throw new excepciones.PrendaInvalidaException("La prenda no es valida porque no se cargo el color principal.");
+            } else if (!prenda.getCategoria().esTipoValido(prenda.getTipoPrenda())){
+                throw new excepciones.PrendaInvalidaException("El tipo no pertenece a la categoria seleccionada");
+            }
+        }
+```        
+<hr>
+
+Por otro lado, el equipo de producto está analizando potenciales futuras funcionalidades para la aplicación y, a fin de tener una estimación de su complejidad, nos pidió que esbocemos una solución a los siguientes requerimientos, orientados a integrar el software con colegios e instituciones privadas:
+
+* Como usuario QueMePongo, quiero que poder recibir sugerencias de uniformes armados.
+Esto lo resolvimos aplicando una adaptacion del patron factory. Nos gusto este approach porque podemos extender a mas colegio simplemente creando mas Clases del estilo de UniformeFactorySanJuan que nos facilita la vida a la hora de pedir un uniforme con esas caracteristicas simplemente haciendo. 
+
+```java
+UniformeFactorySanJuan factorySanJuan = new UniformeFactorySanJuan()
+factorySanJuan.crearUniforme(); //Tenemos un uniforme listo
+```
+
+* Como usuario QueMePongo, quiero que un uniforme siempre conste de una prenda superior, una inferior y un calzado
+Esto se resuelve generando una nueva Clase <a href="https://github.com/mnigliazzo/qmp-grupo10/blob/emazzaglia-qmp-2-iteracion/src/main/java/uniformes/Uniforme.java" target="__blank">Uniforme</a> y que su constructor tenga tres Prendas :)
 
 ~~~
-
-class Atuendo{
-  List<Prenda> prendas
-  
-}
-
-class Prenda{
-  String tipo
-  CategoriaPrenda categoria
-  String materialConstruccion
-  int[] colorPrincipal = new int[3];
-  int[] colorSecundario = new int[3];
-  
-  
-  setTipo(String tipo){
-    TODO ❕
-  }
-  
-  setCategoria(CategoriaPrenda categoria){
-    TODO ❕
-  }
-  
-  setMaterialConstruccion(String materialConstruccion){
-    TODO ❕
-  }
-  
-  setColorPrincipal(int color1, int color2, int color3){
-    TODO ❕
-  }
-  
-  setColorSecundario(int color1, int color2, int color3){
-    TODO ❕
-  }
-}
-
-
-enum CategoriaPrenda{
-  PARTE-SUPERIOR, CALZADO, PARTE-INFERIOR, ACCESORIO
-}
-
-class GeneradorDePrendas{
-  Prenda prenda
-  
-  
-  crearNuevaPrenda(){
-    prenda = new Prenda();
-  }
-  
-  getPrenda(){
-  
-    if(!prenda.tipo || !prenda.materialConstruccion || !prenda.colorPrimario){
-      throw new exception("La prenda generada no es valida. Debe tener tipo de prenda, material de construccion y color primario")
-    }
-    
-    return prenda;
-  }
-  
-  
-  
-  
-  setTipoConCategoria(String tipoPrenda){
-    prenda.setTipo(tipoPrenda)
-    CategoriaPrenda categoria = RepositorioTipoPrendas.instance().buscarCategoria(tipo)
-    
-    prenda.setCategoria(categoria)
-  }
-  
-  setMaterialConstruccion(String materialConstruccion){
-    prenda.setMaterialConstruccion(materialConstruccion)
-  }
-  
-  setColorPrincipal(int color1, int color2, int color3){
-    prenda.setColorPrincipal(color1, color2, color3)
-  }
-  
-  setColorSecundario(int color1, int color2, int color3){
-    prenda.setColorSecundario(color1, color2, color3)
-  }
-  
-
-}
-
-
-class RepositorioTipoPrendas{
-
-  private static final RepositorioTipoPrendas INSTANCE = new RepositorioTipoPrendas();
-  
-  private RepositorioTipoPrendas(){}  //constructor
-  
-  public static RepositorioTipoPrendas instance(){
-    return INSTANCE
-  }
-  
-  List<String> partesSuperiores
-  List<String> partesInferiores
-  List<String> calzados
-  List<String> accesorios
-  
-  
-  buscarCategoria(String tipoPrenda){
-    
-    if(partesSuperiores.contains(tipoPrenda)) return CategoriaPrenda.PARTE-SUPERIOR
-    if(partesInferiores.contains(tipoPrenda)) return CategoriaPrenda.PARTE-INFERIOR
-    if(calzados.contains(tipoPrenda)) return CategoriaPrenda.CALZADO
-    if(accesorios.contains(tipoPrenda)) return CategoriaPrenda.ACCESORIO
-    else{
-    	throw new exception("El tipo de prenda ingresado no es valido")
-    }
-  }
-   
-}
-
-
-~~~
-
-
----
-
-# Ejecutar tests
-
-```
-mvn test
-```
-
-# Validar el proyecto de forma exahustiva
-
-```
-mvn clean verify
-```
-
-Este comando hará lo siguiente:
-
- 1. Ejecutará los tests
- 2. Validará las convenciones de formato mediante checkstyle
- 3. Detectará la presencia de (ciertos) code smells
- 4. Validará la cobertura del proyecto
-
-# Entrega del proyecto
-
-Para entregar el proyecto, crear un tag llamado `entrega-final`. Es importante que antes de realizarlo se corra la validación
-explicada en el punto anterior. Se recomienda hacerlo de la siguiente forma:
-
-```
-mvn clean verify && git tag entrega-final && git push origin HEAD --tags
-```
-
-# Configuración del IDE (IntelliJ)
-
- 1. Tabular con dos espacios: ![Screenshot_2021-04-09_18-23-26](https://user-images.githubusercontent.com/677436/114242543-73e1fe00-9961-11eb-9a61-7e34be9fb8de.png)
- 2. Instalar y configurar Checkstyle:
-    1. Instalar el plugin https://plugins.jetbrains.com/plugin/1065-checkstyle-idea:
-    2. Configurarlo activando los Checks de Google: ![Screenshot_2021-04-09_18-16-13](https://user-images.githubusercontent.com/677436/114242548-75132b00-9961-11eb-972e-28e6e1412979.png)
- 3. Usar fin de linea unix
-    1. En **Settings/Preferences**, ir a a **Editor | Code Style**.
-    2. En la lista **Line separator**, seleccionar `Unix and OS X (\n)`.
- ![Screenshot 2021-04-10 03-49-00](https://user-images.githubusercontent.com/11875266/114260872-c6490c00-99ad-11eb-838f-022acc1903f4.png)
