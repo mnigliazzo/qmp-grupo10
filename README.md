@@ -6,7 +6,7 @@ Solución principal se encuentra en el <a href="https://github.com/mnigliazzo/qm
 
 # Diagrama de clases
 
-![class diagram](class-diagram-qmp-second-iteration.png)
+![class diagram](class-diagram-qmp.png)
 
 # Ejecutar tests
 
