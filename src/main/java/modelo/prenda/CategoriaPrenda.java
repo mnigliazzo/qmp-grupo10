@@ -1,4 +1,4 @@
-package ropa;
+package modelo.prenda;
 
 public enum CategoriaPrenda {
 

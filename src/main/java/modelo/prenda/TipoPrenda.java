@@ -1,4 +1,4 @@
-package ropa;
+package modelo.prenda;
 
 public enum TipoPrenda {
     PANTALON, REMERA, CAMISA, BERMUDA, SUETER, CALZONCILLO, ZAPATILLA, ZAPATOS, CHOMBA, PANTALON_DE_VESTIR

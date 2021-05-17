@@ -1,4 +1,6 @@
-package ropa;
+package modelo.prenda;
+
+import modelo.clima.Temperatura;
 
 public class Prenda {
 
@@ -8,6 +10,7 @@ public class Prenda {
     private Color colorPrincipal;
     private Color colorSecundario;
     private Trama trama = Trama.LISA;
+    private Temperatura temperaturaDeUso;
 
     private Prenda(PrendaBuilder builder) {
         this.tipoPrenda =  builder.tipoPrenda;
@@ -16,6 +19,7 @@ public class Prenda {
         this.colorPrincipal = builder.colorPrincipal;
         this.colorSecundario = builder.colorSecundario;
         this.trama = builder.trama;
+        this.temperaturaDeUso = builder.temperaturaDeUso;
     }
 
     public TipoPrenda getTipoPrenda() {
@@ -40,6 +44,14 @@ public class Prenda {
 
     public Trama getTrama() {
         return trama;
+    }
+
+    public Temperatura getTemperaturaDeUso() {
+        return temperaturaDeUso;
+    }
+
+    public void setTemperaturaDeUso(Temperatura temperaturaDeUso) {
+        this.temperaturaDeUso = temperaturaDeUso;
     }
 
     public void setTipoPrenda(TipoPrenda tipoPrenda) {
@@ -73,6 +85,7 @@ public class Prenda {
         private Color colorPrincipal;
         private Color colorSecundario;
         private Trama trama = Trama.LISA;
+        private Temperatura temperaturaDeUso;
 
         public PrendaBuilder(TipoPrenda tipo) {
             this.tipoPrenda = tipo;
@@ -101,6 +114,11 @@ public class Prenda {
             return this;
         }
 
+        public PrendaBuilder temperaturaDeUso(Temperatura temperatura){
+            this.temperaturaDeUso = temperatura;
+            return this;
+        }
+
         public Prenda build() {
             Prenda prenda =  new Prenda(this);
             validarPrenda(prenda);
@@ -108,11 +126,11 @@ public class Prenda {
         }
         public void validarPrenda(Prenda prenda) {
             if(prenda.getTipoPrenda() == null) {
-                throw new excepciones.PrendaInvalidaException("La prenda no es valida porque no se cargo el tipo.");
+                throw new excepciones.PrendaInvalidaException("La modelo.prenda no es valida porque no se cargo el tipo.");
             } else if(prenda.getMaterial() == null) {
-                throw new excepciones.PrendaInvalidaException("La prenda no es valida porque no se cargo el material.");
+                throw new excepciones.PrendaInvalidaException("La modelo.prenda no es valida porque no se cargo el material.");
             } else if(prenda.getColorPrincipal() == null) {
-                throw new excepciones.PrendaInvalidaException("La prenda no es valida porque no se cargo el color principal.");
+                throw new excepciones.PrendaInvalidaException("La modelo.prenda no es valida porque no se cargo el color principal.");
             } else if (!prenda.getCategoria().esTipoValido(prenda.getTipoPrenda())){
                 throw new excepciones.PrendaInvalidaException("El tipo no pertenece a la categoria seleccionada");
             }

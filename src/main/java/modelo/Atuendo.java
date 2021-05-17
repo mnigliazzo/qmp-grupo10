@@ -1,15 +1,19 @@
-package uniformes;
+package modelo;
 
-import ropa.Prenda;
 
-public class Uniforme {
+import modelo.prenda.Prenda;
+
+public class Atuendo {
     private Prenda calzado;
     private Prenda prendaSuperior;
     private Prenda prendaInferior;
-    public Uniforme(Prenda calzado, Prenda prendaSuperior, Prenda prendaInferior) {
+    private Prenda accesorio;
+
+    public Atuendo(Prenda calzado, Prenda prendaSuperior, Prenda prendaInferior, Prenda accesorio) {
         this.calzado = calzado;
         this.prendaSuperior = prendaSuperior;
         this.prendaInferior = prendaInferior;
+        this.accesorio = accesorio;
     }
 
     public Prenda getCalzado() {
@@ -34,5 +38,13 @@ public class Uniforme {
 
     public void setPrendaInferior(Prenda prendaInferior) {
         this.prendaInferior = prendaInferior;
+    }
+
+    public Prenda getAccesorio() {
+        return accesorio;
+    }
+
+    public void setAccesorio(Prenda accesorio) {
+        this.accesorio = accesorio;
     }
 }
