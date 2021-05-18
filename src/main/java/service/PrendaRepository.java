@@ -13,4 +13,12 @@ public interface PrendaRepository {
 
     Prenda getCalzado(Temperatura temperatura);
 
+    void agregarParteInferior(Prenda parteInferior);
+
+    void agregarParteSuperior(Prenda parteSuperior);
+
+    void agregarCalzado(Prenda calzado);
+
+    void agregarAccesorio(Prenda accesorio);
+
 }

@@ -13,9 +13,7 @@ public class AtuendoServiceImpl implements AtuendoService {
     private PrendaRepository prendaRepository;
 
     @Override
-    public Atuendo sugerirAtuendo(
-            
-    ) {
+    public Atuendo sugerirAtuendo() {
         //TODO En caso de ser necesario habria que tratar la temperatura, en este caso yo voy a modelar la temperatura de las prendas con F en vez de C
         Temperatura temperatura = climaService.getTemperature("Buenos Aires, Argentina");
         Atuendo atuendo = obtenerAtuendoSegunTemperatura(temperatura);
