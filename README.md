@@ -3,7 +3,7 @@
 ## Diagrama de clases
 
 <p> 
-<img src="QMP - 4ta iteracion.pdf">
+<img src="QMP - 4ta iteracion.png">
 </p>
 
 ## Explicacion
