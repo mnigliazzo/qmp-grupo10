@@ -7,6 +7,9 @@
 ## [Iteracion 2](https://docs.google.com/document/d/10j6XB9zIhl5xox2xBEDEFsgPmueHMkyvLSHcLxl_27Y/edit)
 ### [Resolucion](Iteracion2.md)
 
+## [Iteracion 4](https://docs.google.com/document/d/1sy9S9EeIQr8fhatKnfTCgOfjVniJDu2viI-Av0gn0xY/edit)
+### [Resolucion](Iteracion4.md)
+
 
 # java-base-project
 
