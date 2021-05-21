@@ -1,0 +1,68 @@
+@startuml
+class Prenda {
+~ TipoPrenda tipo
+~ Material material
+~ Color colorPrimario
+~ Color colorSecundario
+~ Trama trama
+~ Integer temperaturaMaximaDeUso
++ Categoria getCategoria()
++ Boolean esUsableEnTemperaturaDe(Integer)
+}
+class AccuWeatherAPI {
++ List<Map<String,Object>> getWeather(String)
+}
+interface ServicioMeteorologico {
+~ Clima getEstadoClima(String)
+}
+class Clima {
+~ List<Map<String,Object>> clima
++ Integer getTemperatura()
+}
+interface GeneradorSugerencias {
++ List<Vestimenta> generarSugerenciasDesde(List<Prenda>)
+}
+class Vestimenta {
+~ Prenda calzado
+~ Prenda parteInferior
+~ Prenda parteSuperior
+~ Prenda accesorio
++ Boolean esUsableEnTemperaturaDe(Integer)
+}
+class Sugeridor {
+- GeneradorSugerencias generadorSugerencias
+- ServicioMeteorologico servicioMeteorologico
++ Vestimenta obtenerSugerenciaSegun(String,Guardarropa)
+}
+class AccuWeather {
+~ AccuWeatherAPI accuWeatherAPI
+- Integer cantidadHsVigenciaConsulta
+- List<Map<String,RespuestaAccuWeather>> ultimasRespuestas
++ Clima getEstadoClima(String)
+- LocalDateTime fechaExpiracion()
+}
+class RespuestaAccuWeather {
+~ Clima Clima
+~ LocalDateTime expiracion
++ boolean expiro()
++ ClimaAccuWeather getClima()
+}
+class Guardarropa {
+~ List<Prenda> prendas
++ List<Prenda> getGuardarropa()
+}
+
+
+ServicioMeteorologico <|.. AccuWeather
+GeneradorSugerencias..>Prenda
+Guardarropa-->Prenda
+Vestimenta-->Prenda
+Sugeridor-->GeneradorSugerencias
+Sugeridor..>Guardarropa
+Sugeridor-->ServicioMeteorologico
+Sugeridor..>Vestimenta
+AccuWeather..>Clima
+AccuWeather-->RespuestaAccuWeather
+AccuWeather-->AccuWeatherAPI
+
+@enduml

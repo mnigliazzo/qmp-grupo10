@@ -8,6 +8,11 @@ public class PrendaBorrador {
 	Color colorPrimario;
 	Color colorSecundario;
 	Trama trama=Trama.LISA;
+	Integer temperaturaMaximaDeUso;
+
+	public void setTemperaturaMaximaDeUso(Integer temperaturaMaximaDeUso) {
+		this.temperaturaMaximaDeUso=temperaturaMaximaDeUso;
+	}
 
 	public void setTrama(Trama trama) {
 		this.trama=trama;
@@ -36,7 +41,7 @@ public class PrendaBorrador {
 
 	public Prenda crearPrenda(){
 		this.validar(); //Llamo a validar ya que no se impide que se llame el metodo con los atributos en null
-		return new Prenda(this.tipo,this.material,this.colorPrimario,this.colorSecundario,this.trama);
+		return new Prenda(this.tipo,this.material,this.colorPrimario,this.colorSecundario,this.trama,this.temperaturaMaximaDeUso);
 	}
 	private void validar(){
 		if (this.material==null) throw new PrendaException("Material no puede ser Null");

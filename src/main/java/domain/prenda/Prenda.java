@@ -8,16 +8,22 @@ public class Prenda {
 	Color colorPrimario;
 	Color colorSecundario;
 	Trama trama;
+	Integer temperaturaMaximaDeUso;
 
-	public Prenda(TipoPrenda tipo, Material material, Color colorPrimario, Color colorSecundario, Trama trama) { //TODO: Consultar si aca debo hacer la validacion. Porque en cualquier lado puedo hacer new Prenda, por ende puedo crear prenda por dos lados por el builder y por la prenda, creo que por prenda no deberia poder crearse y solo por el builder
+	public Prenda(TipoPrenda tipo, Material material, Color colorPrimario, Color colorSecundario, Trama trama,Integer temperaturaMaximaDeUso) {
 		this.tipo = tipo;
 		this.material = material;
 		this.colorPrimario = colorPrimario;
 		this.colorSecundario = colorSecundario;
 		this.trama=trama;
+		this.temperaturaMaximaDeUso=temperaturaMaximaDeUso;
 	}
 
 	public Categoria getCategoria() {
 		return this.tipo.getCategoria();
+	}
+
+	public Boolean esUsableEnTemperaturaDe(Integer temperatura){
+		return temperaturaMaximaDeUso>temperatura;
 	}
 }
