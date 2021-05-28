@@ -1,0 +1,53 @@
+@startuml
+class Prenda {
+~ TipoPrenda tipo
+~ Material material
+~ Color colorPrimario
+~ Color colorSecundario
+~ Trama trama
+~ Integer temperaturaMaximaDeUso
++ Categoria getCategoria()
++ Boolean esUsableEnTemperaturaDe(Integer)
+}
+class Guardarropa {
+~ List<Sugerencia> sugerencias
+~ List<Prenda> prendas
++ List<Prenda> getGuardarropa()
+~ List<Sugerencia> sugerenciasAceptadas
++ void agregarSugerencia(Sugerencia)
++ void aceptarSugerencia(Sugerencia)
++ void rechazarSugerencia(Sugerencia)
++ void deshacerSugerencia(sugerencia)
++ void agregarPrenda(Prenda)
++ void sacarPrenda(Prenda)
+
+}
+
+class Usuario {
+~List<Guardarropa> guardarropas
++void agregarGuardarropa(Guardarropa)
++void proponerCambio(Guardarropa,Sugerencia)
+}
+
+interface Sugerencia{
++ void aplicar(Guardarropa)
++ void deshacer(Guardarropa)
+}
+
+class Agregar implements Sugerencia{
+~ Prenda
++ void aplicar(Guardarropa)
++ void deshacer(Guardarropa)
+}
+class Quitar implements Sugerencia{
+~ Prenda
++ void aplicar(Guardarropa)
++ void deshacer(Guardarropa)
+}
+Guardarropa-->Sugerencia
+Guardarropa-->Prenda
+Guardarropa-->Usuario
+Usuario-->Guardarropa
+
+
+@enduml
