@@ -1,6 +1,6 @@
 package domain.prenda;
 
-public interface Sugerencia {
+public interface Propuesta {
   void aplicar(Guardarropa guardarropa);
   void deshacer(Guardarropa guardarropa);
 }

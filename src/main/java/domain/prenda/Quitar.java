@@ -1,6 +1,6 @@
 package domain.prenda;
 
-public class Quitar implements Sugerencia{
+public class Quitar implements Propuesta{
   Prenda prenda;
 
   @Override

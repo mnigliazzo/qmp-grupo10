@@ -10,14 +10,14 @@ class Prenda {
 + Boolean esUsableEnTemperaturaDe(Integer)
 }
 class Guardarropa {
-~ List<Sugerencia> sugerencias
+~ List<Propuesta> propuestas
 ~ List<Prenda> prendas
 + List<Prenda> getGuardarropa()
-~ List<Sugerencia> sugerenciasAceptadas
-+ void agregarSugerencia(Sugerencia)
-+ void aceptarSugerencia(Sugerencia)
-+ void rechazarSugerencia(Sugerencia)
-+ void deshacerSugerencia(sugerencia)
+~ List<Propuesta> propuestasAceptadas
++ void agregarPropuesta(Propuesta)
++ void aceptarPropuesta(Propuesta)
++ void rechazarPropuesta(Propuesta)
++ void deshacerPropuesta(Propuesta)
 + void agregarPrenda(Prenda)
 + void sacarPrenda(Prenda)
 
@@ -26,28 +26,26 @@ class Guardarropa {
 class Usuario {
 ~List<Guardarropa> guardarropas
 +void agregarGuardarropa(Guardarropa)
-+void proponerCambio(Guardarropa,Sugerencia)
 }
 
-interface Sugerencia{
+interface Propuesta{
 + void aplicar(Guardarropa)
 + void deshacer(Guardarropa)
 }
 
-class Agregar implements Sugerencia{
+class Agregar implements Propuesta{
 ~ Prenda
 + void aplicar(Guardarropa)
 + void deshacer(Guardarropa)
 }
-class Quitar implements Sugerencia{
+class Quitar implements Propuesta{
 ~ Prenda
 + void aplicar(Guardarropa)
 + void deshacer(Guardarropa)
 }
-Guardarropa-->Sugerencia
-Guardarropa-->Prenda
-Guardarropa-->Usuario
-Usuario-->Guardarropa
+Guardarropa-->"*"Propuesta
+Guardarropa-->"*"Prenda
+Usuario-->"*"Guardarropa
 
 
 @enduml
