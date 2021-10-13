@@ -1,0 +1,72 @@
+@startuml
+
+class Usuario {
+~List<Guardarropa> guardarropas
+~Sugerencia sugerenciasDiaria;
+~List<AccionConfigurable> accionesConfigurables
++void agregarGuardarropa(Guardarropa)
++Sugerencia getSugerenciaDiaria()
++ void calcularSugerenciaDiaria()
++void realizarAccionesSobreAlertas(List<AlertaMeteorologica> alertas)
+}
+
+Usuario-->"*"AccionConfigurable
+
+interface AccionConfigurable{
++ nuevaAlertaTormenta(usuario)
++ nuevaAlertaGranizo(usuario)
+}
+
+class RecalculadorPropuestas implements AccionConfigurable {
++ nuevaAlertaTormenta(usuario)
++ nuevaAlertaGranizo(usuario)
+}
+
+class NotificadorAnteAlertas implements AccionConfigurable {
++ nuevaAlertaTormenta(usuario)
++ nuevaAlertaGranizo(usuario)
+}
+
+
+class RepositorioUsuarios{
+~ List<Usuario> usuarios
++ List<Usuario> getUsuarios()
+}
+
+class AsesorDeImagen {
+~RepositorioUsuarios repoUsuarios
+~Sugerencia sugerencia
++void calcularSugerenciasDiarias()
+}
+class Sugerencia{
+~List<Vestimenta> vestimentas
+}
+AsesorDeImagen-->Sugerencia
+
+enum AlertaMeteorologica {
+  TORMENTA,
+  GRANIZO
+}
+
+class RegistroAlertas {
+	 ~ List<AlertaMeteorologica> alertasActuales
+	 ~ RepositorioUsuarios repoUsuarios;
+     ~ AccuWeatherAPI accuWeatherAPI
+	 + void actualizarAlertas()
+}
+RegistroAlertas-->RepositorioUsuarios
+RegistroAlertas-->"*"AlertaMeteorologica
+RegistroAlertas..>ServicioMeteorologico
+interface ServicioMeteorologico {
+~ Clima getEstadoClima(String)
+}
+
+AsesorDeImagen-->RepositorioUsuarios
+
+
+
+
+RepositorioUsuarios-->"*"Usuario
+
+
+@enduml

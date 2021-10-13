@@ -1,11 +1,15 @@
 package domain.weather;
 
+import domain.prenda.AlertaMeteorologica;
+
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 public class AccuWeather implements ServicioMeteorologico {
+	List<AlertaMeteorologica> alertasActuales = new ArrayList<>();
 	AccuWeatherAPI accuWeatherAPI = new AccuWeatherAPI();
 	private Integer cantidadHsVigenciaConsulta = 3;// 24hs/3= 8 veces al dia se le consultaria. Lo que implica que para cada ciudad se ejecute como maximo 8 veces al dia.
 	// Para el caso de que sea otra ciudad podria ese dia hacer otras 8 consultas, por lo que se pasaria del limite de 10 gratis.
@@ -29,6 +33,18 @@ public class AccuWeather implements ServicioMeteorologico {
 	private LocalDateTime fechaExpiracion() {
 		return LocalDateTime.now().plusHours(cantidadHsVigenciaConsulta);
 	}
+
+	@Override
+	public List<AlertaMeteorologica> getAlertasActuales(){
+		Map<String, Object> alertas = (Map<String, Object>) accuWeatherAPI.getAlertas("Buenos Aires");
+		return adaptarListaDeAlertas((List<String>) alertas.get("CurrentAlerts"));
+	}
+
+	private List<AlertaMeteorologica> adaptarListaDeAlertas(List<String> currentAlerts) {
+		return new ArrayList<>();//TODO: Convertir la lista de alertas a lista de enum
+	}
+
+
 }
 
 

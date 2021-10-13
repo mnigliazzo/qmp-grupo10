@@ -13,6 +13,9 @@
 ## [Iteracion 5](https://docs.google.com/document/d/1wS622pMwZrDK9ilL_hEt5bBE04vKUKZILx8cIQ-aQzU/edit)
 ### [Resolucion](Iteracion5.md)
 
+## [Iteracion 6](https://docs.google.com/document/d/1NxqhJj70kt-_4aw-CawlISdJZyedzoOcLAVJAZVZISE/edit)
+### [Resolucion](Iteracion6.md)
+
 # java-base-project
 
 # Ejecutar tests
